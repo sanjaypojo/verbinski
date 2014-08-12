@@ -45,7 +45,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let task = session.dataTaskWithRequest(request, completionHandler: {
             (data, response, error) in
             var movieDict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as Dictionary<String, String>
-            let titleFetched = movieDict["Year"]
+            let titleFetched :String! = movieDict["Year"]
             println("\(titleFetched)")
             println("Ended")
             dispatch_async(dispatch_get_main_queue(), {
