@@ -16,9 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nm4-Dg-u7u">
-                                <rect key="frame" x="16" y="145" width="288" height="175"/>
-                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uaE-ar-UY3">
                                 <rect key="frame" x="16" y="77" width="288" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,12 +31,16 @@
                                     <action selector="movieSearchGo:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="WSR-5q-pnP"/>
                                 </connections>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hSJ-s8-mgv">
+                                <rect key="frame" x="16" y="145" width="288" height="403"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="movieImage" destination="nm4-Dg-u7u" id="P6o-YH-hTq"/>
                         <outlet property="movieSearch" destination="cWP-uQ-adF" id="SFe-Yw-5bi"/>
+                        <outlet property="movieTable" destination="hSJ-s8-mgv" id="VZr-T3-b5W"/>
                         <outlet property="movieTitle" destination="uaE-ar-UY3" id="ona-6e-7g4"/>
                         <outlet property="searchDisplayController" destination="5dU-Ve-DrQ" id="OCd-4k-WRQ"/>
                     </connections>
