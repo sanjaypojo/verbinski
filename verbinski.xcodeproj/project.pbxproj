@@ -13,6 +13,7 @@
 		E91DDF6C199A1CB200472DDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91DDF6A199A1CB200472DDC /* Main.storyboard */; };
 		E91DDF6E199A1CB200472DDC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91DDF6D199A1CB200472DDC /* Images.xcassets */; };
 		E91DDF7A199A1CB200472DDC /* verbinskiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91DDF79199A1CB200472DDC /* verbinskiTests.swift */; };
+		E91DDF86199A25AD00472DDC /* sanjay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E91DDF85199A25AD00472DDC /* sanjay.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		E91DDF73199A1CB200472DDC /* verbinskiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = verbinskiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91DDF78199A1CB200472DDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E91DDF79199A1CB200472DDC /* verbinskiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verbinskiTests.swift; sourceTree = "<group>"; };
+		E91DDF85199A25AD00472DDC /* sanjay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sanjay.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				E91DDF63199A1CB200472DDC /* AppDelegate.swift */,
 				E91DDF68199A1CB200472DDC /* ViewController.swift */,
 				E91DDF6A199A1CB200472DDC /* Main.storyboard */,
+				E91DDF85199A25AD00472DDC /* sanjay.jpg */,
 				E91DDF6D199A1CB200472DDC /* Images.xcassets */,
 				E91DDF65199A1CB200472DDC /* verbinski.xcdatamodeld */,
 				E91DDF61199A1CB200472DDC /* Supporting Files */,
@@ -192,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E91DDF86199A25AD00472DDC /* sanjay.jpg in Resources */,
 				E91DDF6C199A1CB200472DDC /* Main.storyboard in Resources */,
 				E91DDF6E199A1CB200472DDC /* Images.xcassets in Resources */,
 			);
