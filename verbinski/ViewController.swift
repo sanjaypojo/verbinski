@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
                             
     @IBOutlet var movieSearch: UITextField!
     @IBOutlet var movieTitle: UITextView!
@@ -17,9 +17,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        movieTitle.text = "The Big Lebowski"
+        movieSearch.text = "The Big Lebowski"
+        self.movieSearchGo(movieSearch)
         var moviePic : UIImage = UIImage(named: "sanjay.jpg")
         movieImage.image = moviePic
+        movieSearch.delegate = self
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,6 +34,26 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func movieSearchGo(sender: AnyObject) {
+        println("Started")
+        var urlString = "http://www.omdbapi.com/?t=" + movieSearch.text
+        urlString = urlString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+        println(urlString)
+        let url = NSURL.URLWithString(urlString)
+        let request = NSURLRequest(URL: url)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler: {
+            (data, response, error) in
+            var movieDict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as Dictionary<String, String>
+            let titleFetched = movieDict["Year"]
+            println("\(titleFetched)")
+            println("Ended")
+            dispatch_async(dispatch_get_main_queue(), {
+                self.movieTitle.text = "\(titleFetched)"
+            });
+        });
+        task.resume()
+    }
 
 }
 
