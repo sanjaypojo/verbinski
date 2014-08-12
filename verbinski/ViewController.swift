@@ -52,7 +52,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
 
     
     @IBAction func movieSearchGo(sender: AnyObject) {
-        println("Started movie fetch")
+        println("Started - movie fetch")
         var currentMovieInfo:[String] = []
         var infoParams : NSArray = ["Title", "Writer", "Year", "Director", "imdbRating", "Runtime", "Genre", "Actors"]
         
@@ -62,18 +62,29 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
         let task = session.dataTaskWithRequest(request, completionHandler:
         { (data, response, error) in
+            
             var movieDict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as Dictionary<String, String>
-            let titleFetched:String! = movieDict["Title"]
+            if movieDict["Title"] == nil {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.movieTitle.text = "Not Found"
+                    self.movieInfo = ["Woopsie, couldn't find the movie!"]
+                    self.movieTable.reloadData()
+                    self.movieImage.image = nil
+                });
+                println("Failed - movie fetch")
+                return
+            }
+
             for (key, value) in movieDict {
                 if infoParams.containsObject(key) == true {
                     currentMovieInfo.append("\(key) : \(value)")
                 }
             }
-            
+            let titleFetched:String! = movieDict["Title"]
             let imgFetched:String! = movieDict["Poster"]
-            let imgData: NSData = NSData(contentsOfURL: NSURL(string: imgFetched))
+            let imgData: NSData! = NSData(contentsOfURL: NSURL(string: imgFetched))
+            println("Completed - movie fetch")
             
-            println("Movie fetch completed")
             dispatch_async(dispatch_get_main_queue(), {
                 self.movieTitle.text = "\(titleFetched)"
                 self.movieInfo = currentMovieInfo
