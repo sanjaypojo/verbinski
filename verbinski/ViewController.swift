@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     @IBOutlet var movieSearch: UITextField!
     @IBOutlet var movieTitle: UITextView!
     @IBOutlet var movieTable: UITableView!
+    @IBOutlet var movieImage: UIImageView!
     var movieInfo = ["Hello"]
     var apiKey = "2bbea3556aa78a3d08cc941d53a2f83e"
     
@@ -70,15 +71,21 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             var movieDict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as Dictionary<String, String>
             let titleFetched:String! = movieDict["Title"]
             for (key, value) in movieDict {
+                println("\(key) : \(value)")
                 if infoParams.containsObject(key) == true {
                     currentMovieInfo.append("\(key) : \(value)")
                 }
             }
+            
+            let imgFetched:String! = movieDict["Poster"]
+            let imgData: NSData = NSData(contentsOfURL: NSURL(string: imgFetched))
+            
             println("Ended")
             dispatch_async(dispatch_get_main_queue(), {
                 self.movieTitle.text = "\(titleFetched)"
                 self.movieInfo = currentMovieInfo
                 self.movieTable.reloadData()
+                self.movieImage.image = UIImage(data: imgData)
             });
         });
         task.resume()

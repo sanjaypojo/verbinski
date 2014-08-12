@@ -32,13 +32,17 @@
                                 </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hSJ-s8-mgv">
-                                <rect key="frame" x="16" y="145" width="288" height="403"/>
+                                <rect key="frame" x="16" y="337" width="288" height="220"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XAu-mV-gHz">
+                                <rect key="frame" x="16" y="145" width="288" height="184"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="movieImage" destination="XAu-mV-gHz" id="3rT-Fg-CN8"/>
                         <outlet property="movieSearch" destination="cWP-uQ-adF" id="SFe-Yw-5bi"/>
                         <outlet property="movieTable" destination="hSJ-s8-mgv" id="VZr-T3-b5W"/>
                         <outlet property="movieTitle" destination="uaE-ar-UY3" id="ona-6e-7g4"/>
