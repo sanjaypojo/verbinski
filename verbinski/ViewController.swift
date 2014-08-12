@@ -30,7 +30,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -50,28 +49,22 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         cell.textLabel.text = movieInfo[indexPath.row]
         return cell
     }
-    
-    func tableView(tableView: UITableView!, didDeselectRowAtIndexPath indexPath: NSIndexPath!) {
-        println("Cell selected")
-    }
 
     
     @IBAction func movieSearchGo(sender: AnyObject) {
-        println("Started")
+        println("Started movie fetch")
         var currentMovieInfo:[String] = []
         var infoParams : NSArray = ["Title", "Writer", "Year", "Director", "imdbRating", "Runtime", "Genre", "Actors"]
-        var urlString = "http://www.omdbapi.com/?t=" + movieSearch.text
-        urlString = urlString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
-        println(urlString)
-        let url = NSURL.URLWithString(urlString)
-        let request = NSURLRequest(URL: url)
+        
+        var urlString = ("http://www.omdbapi.com/?t=" + movieSearch.text).stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+        let request = NSURLRequest(URL: NSURL(string: urlString))
         let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request, completionHandler: {
-            (data, response, error) in
+        
+        let task = session.dataTaskWithRequest(request, completionHandler:
+        { (data, response, error) in
             var movieDict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as Dictionary<String, String>
             let titleFetched:String! = movieDict["Title"]
             for (key, value) in movieDict {
-                println("\(key) : \(value)")
                 if infoParams.containsObject(key) == true {
                     currentMovieInfo.append("\(key) : \(value)")
                 }
@@ -80,7 +73,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             let imgFetched:String! = movieDict["Poster"]
             let imgData: NSData = NSData(contentsOfURL: NSURL(string: imgFetched))
             
-            println("Ended")
+            println("Movie fetch completed")
             dispatch_async(dispatch_get_main_queue(), {
                 self.movieTitle.text = "\(titleFetched)"
                 self.movieInfo = currentMovieInfo
@@ -88,6 +81,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 self.movieImage.image = UIImage(data: imgData)
             });
         });
+        
         task.resume()
     }
 
